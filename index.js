@@ -98,6 +98,37 @@ app.post('/deluser',(req,res)=>{
     });
 });
 
+app.get('/update/:id',(req,res)=>{
+    Users.findById(req.params.id,(err,users)=>{
+        if(err){
+            throw(err);
+        }
+        else{
+            res.render('pages/edit_user',{
+                users:users,
+            });
+        }
+    });
+
+});
+
+app.post('/update/:id',(req,res)=>{
+    let user = {};
+    user.fname = req.body.fname;
+    user.lname = req.body.lname;
+    
+    let query  ={_id:req.params.id}
+
+    Users.update(query,user,(err)=>{
+        if(err){
+            throw(err);
+        }else{
+            console.log(user)
+            res.redirect('/');
+        }
+    })
+});
+
 app.listen(3000,()=>{
     console.log('Server running at port:3000');
 })

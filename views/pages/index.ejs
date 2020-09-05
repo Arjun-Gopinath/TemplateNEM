@@ -18,13 +18,15 @@
         </div>
     
         <br/>
-            <% users.forEach(function(user){ %>
-                <ul id="list">
-                    <li>id : <%= user._id %></li>
-                    <li>First name : <%= user.fname %></li>
-                    <li>Last name : <%= user.lname %></li>
-                </ul>
-            <% })%>
+        <% users.forEach(function(user){ %>
+            <ul id="list">
+                <li><%= user._id %></li>
+                <li><%= user.fname %></li>
+                <li><%= user.lname %></li>
+                <a href="/update/<%=user._id%>"><button>Edit</button></a>
+            </ul>
+        <% })%>
+        
         <br/>
         <%- include ("../partials/footer") %>
     </body>
@@ -33,6 +35,13 @@
             display: flex;
             flex-flow: row;
             justify-content: space-evenly;
+        }
+        #list{
+            display: flex;
+            flex-flow: row;
+            font-size: 25px;
+            list-style-type: none;
+            justify-content: space-around;
         }
     </style>
 </html>
